@@ -9,6 +9,7 @@ import CONF from './config';
 
 // Init Koa app
 const app = new Koa();
+app.keys = ['geoviewer secret keys']
 
 // Init Session
 const session = Session({

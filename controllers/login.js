@@ -2,6 +2,9 @@
 
 import md5 from 'md5';
 
+import { pg } from '../utils/postgresql.utils';
+import CONF from '../config';
+
 export default async ctx => {
     // Get request data
     const { username, password } = ctx.request.body;
@@ -20,17 +23,20 @@ export default async ctx => {
     const res = await pg.select()
         .from('user')
         .where('username', username)
-        .andWhere('password', md5(password + salt[0]))
+        .andWhere('password', md5(password + salt[0].salt))
         .timeout(CONF.timeout);
 
     if (res.length > 0) {
         // Create session
         ctx.session.user = username;
 
+        // Return success result
         ctx.body = {
-            success: true
+            success: true,
+            user: username
         };
     } else {
+        // Return failed result
         ctx.body = {
             success: false,
             errMsg: `Error: Wrong username or password.`

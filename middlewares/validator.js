@@ -3,6 +3,11 @@
 import Joi from '@hapi/joi';
 
 const schemas = {
+    '/api/login': Joi.object({
+        username: Joi.string().trim().max(20).required(),
+        password: Joi.string().alphanum().length(32).required()
+    }),
+
     '/api/search': Joi.object({
         keyword: Joi.string().trim().max(100).required(),
         options: Joi.object().keys({
@@ -12,6 +17,7 @@ const schemas = {
             introduction: Joi.boolean()
         }).required()
     }),
+
     '/api/insert': Joi.object({
         name: Joi.string().trim().max(50).required(),
         pinyin: Joi.string().trim().max(100).required(),
@@ -27,6 +33,7 @@ const schemas = {
             src: Joi.string().max(1048576)
         })
     }),
+
     '/api/update': Joi.object({
         gid: Joi.number().integer().required(),
         name: Joi.string().trim().max(50),
@@ -43,10 +50,10 @@ const schemas = {
             src: Joi.string().max(1048576)
         })
     }),
+
     '/api/delete': Joi.object({
         gid: Joi.number().integer().required()
-    }),
-    '/api/weather': Joi.object()
+    })
 };
 
 export default async (ctx, next) => {

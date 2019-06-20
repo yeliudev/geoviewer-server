@@ -12,6 +12,7 @@ const router = new Router({
 
 // API list
 router
+    .post('/login', controllers.login)
     .get('/search', controllers.search)
     .post('/insert', middlewares.auth, controllers.insert)
     .post('/update', middlewares.auth, controllers.update)
