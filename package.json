@@ -1,0 +1,35 @@
+{
+  "name": "geoviewer-server",
+  "version": "1.0.0",
+  "description": "Back-end code for GeoViewer (https://yeliu.me/geoviewer)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/goolhanrry/geoviewer-server.git"
+  },
+  "author": "Ye Liu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/goolhanrry/geoviewer-server/issues"
+  },
+  "homepage": "https://github.com/goolhanrry/geoviewer-server#readme",
+  "dependencies": {
+    "@hapi/joi": "^15.0.3",
+    "babel-core": "^6.26.3",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-register": "^6.26.0",
+    "dateformat": "^3.0.3",
+    "knex": "^0.17.6",
+    "knex-postgis": "^0.8.0",
+    "koa": "^2.7.0",
+    "koa-bodyparser": "^4.2.1",
+    "koa-router": "^7.4.0",
+    "koa-session": "^5.12.0",
+    "md5": "^2.2.1",
+    "pg": "^7.11.0"
+  }
+}
