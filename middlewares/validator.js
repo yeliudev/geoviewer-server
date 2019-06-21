@@ -8,6 +8,8 @@ const schemas = {
         password: Joi.string().alphanum().length(32).required()
     }),
 
+    '/api/logout': Joi.object(),
+
     '/api/search': Joi.object({
         keyword: Joi.string().trim().max(100).required(),
         options: Joi.object().keys({

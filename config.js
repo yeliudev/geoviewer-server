@@ -12,7 +12,7 @@ export default {
 
     // PostgreSQL
     pg_connection: {
-        host: '134.175.186.17',
+        host: 'localhost',
         port: '5432',
         user: '',
         password: '',

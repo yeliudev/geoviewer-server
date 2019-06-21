@@ -1,6 +1,6 @@
 /* Written by Ye Liu */
 
-export default async ctx => {
+export default async (ctx, next) => {
     // Check authorization
     if (!ctx.session.user) {
         ctx.body = {
