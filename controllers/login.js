@@ -17,6 +17,7 @@ export default async ctx => {
             success: false,
             errMsg: `Error: User '${username}' not found.`
         };
+        return;
     }
 
     // Validate password
