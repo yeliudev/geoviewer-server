@@ -10,6 +10,10 @@ const schemas = {
 
     '/api/logout': Joi.object(),
 
+    '/api/getDataset': Joi.object({
+        id: Joi.string().trim().max(20).required()
+    }),
+
     '/api/search': Joi.object({
         keyword: Joi.string().trim().max(100).required(),
         options: Joi.object().keys({

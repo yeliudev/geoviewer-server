@@ -14,6 +14,7 @@ const router = new Router({
 router
     .post('/login', controllers.login)
     .post('/logout', controllers.logout)
+    .get('/getDataset', controllers.getDataset)
     .get('/search', controllers.search)
     .post('/insert', middlewares.auth, controllers.insert)
     .post('/update', middlewares.auth, controllers.update)
