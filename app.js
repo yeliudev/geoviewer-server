@@ -4,7 +4,7 @@ import Koa from 'koa';
 import Session from 'koa-session';
 
 import middlewares from './middlewares';
-import router from './routes/router';
+import router from './router/router';
 import CONF from './config';
 
 // Init Koa app
