@@ -23,7 +23,7 @@
     "babel-preset-env": "^1.7.0",
     "babel-register": "^6.26.0",
     "dateformat": "^3.0.3",
-    "knex": "^0.19.4",
+    "knex": "^0.19.5",
     "knex-postgis": "^0.8.1",
     "koa": "^2.8.1",
     "koa-bodyparser": "^4.2.1",
