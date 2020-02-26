@@ -6,9 +6,7 @@ import controllers from '../controllers';
 import middlewares from '../middlewares';
 
 // Init koa-router
-const router = new Router({
-    prefix: '/api'
-});
+const router = new Router();
 
 // API list
 router

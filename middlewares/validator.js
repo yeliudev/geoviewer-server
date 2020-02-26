@@ -3,18 +3,18 @@
 import Joi from '@hapi/joi';
 
 const schemas = {
-    '/api/login': Joi.object({
+    '/login': Joi.object({
         username: Joi.string().trim().max(20).required(),
         password: Joi.string().alphanum().length(32).required()
     }),
 
-    '/api/logout': Joi.object(),
+    '/logout': Joi.object(),
 
-    '/api/getDataset': Joi.object({
+    '/getDataset': Joi.object({
         id: Joi.string().trim().max(20).required()
     }),
 
-    '/api/search': Joi.object({
+    '/search': Joi.object({
         keyword: Joi.string().trim().max(100).required(),
         options: Joi.object().keys({
             gid: Joi.boolean(),
@@ -24,7 +24,7 @@ const schemas = {
         }).required()
     }),
 
-    '/api/insert': Joi.object({
+    '/insert': Joi.object({
         name: Joi.string().trim().max(50).required(),
         pinyin: Joi.string().trim().max(100).required(),
         introduction: Joi.string().trim().max(500).required(),
@@ -40,7 +40,7 @@ const schemas = {
         })
     }),
 
-    '/api/update': Joi.object({
+    '/update': Joi.object({
         gid: Joi.number().integer().required(),
         name: Joi.string().trim().max(50),
         pinyin: Joi.string().trim().max(100),
@@ -57,7 +57,7 @@ const schemas = {
         })
     }),
 
-    '/api/delete': Joi.object({
+    '/delete': Joi.object({
         gid: Joi.number().integer().required()
     })
 };
