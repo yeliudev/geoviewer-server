@@ -8,7 +8,7 @@ import router from './router/router';
 import CONF from './config';
 
 // Init Koa app
-const app = new Koa();
+const app = new Koa({ proxy: true });
 app.keys = ['geoviewer secret keys']
 
 // Init Session
