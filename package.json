@@ -3,19 +3,16 @@
   "version": "1.0.0",
   "description": "Back-end code for GeoViewer (https://yeliu.me/geoviewer)",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/goolhanrry/geoviewer-server.git"
+    "url": "git+https://github.com/c1aris/geoviewer-server.git"
   },
   "author": "Ye Liu",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/goolhanrry/geoviewer-server/issues"
+    "url": "https://github.com/c1aris/geoviewer-server/issues"
   },
-  "homepage": "https://github.com/goolhanrry/geoviewer-server#readme",
+  "homepage": "https://github.com/c1aris/geoviewer-server#readme",
   "dependencies": {
     "@hapi/joi": "^15.0.3",
     "babel-core": "^6.26.3",
