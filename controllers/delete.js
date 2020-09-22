@@ -8,7 +8,7 @@ export default async ctx => {
     const gid = ctx.request.body.gid;
 
     // Delete data from postgis_db
-    const res = await pg('res2_4m')
+    const res = await pg('spatial_info')
         .where('gid', gid)
         .del()
         .timeout(CONF.timeout);

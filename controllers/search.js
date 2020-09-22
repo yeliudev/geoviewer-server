@@ -11,7 +11,7 @@ export default async ctx => {
 
     // Select data from postgis_db
     const res = await pg.select('gid', 'name', 'pinyin', 'introduction', 'image', st.asGeoJSON('geom').as('geometry'))
-        .from('res2_4m')
+        .from('spatial_info')
         .where('gid', options.gid ? parseGid(keyword) : 0)
         .orWhere('name', 'like', options.name ? `%${keyword}%` : '')
         .orWhere('pinyin', 'like', options.pinyin ? `%${keyword}%` : '')

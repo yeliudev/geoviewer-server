@@ -8,11 +8,11 @@ export default async ctx => {
     var { name, pinyin, introduction, image, geometry } = ctx.request.body;
 
     // Set new Gid
-    const currentGid = await pg('res2_4m').max('gid').timeout(CONF.timeout);
+    const currentGid = await pg('spatial_info').max('gid').timeout(CONF.timeout);
     const gid = currentGid[0].max >= 1000 ? currentGid[0].max + 1 : 1000;
 
     // Insert data into postgis_db
-    const res = await pg('res2_4m')
+    const res = await pg('spatial_info')
         .insert({
             gid: gid,
             name: name,

@@ -26,7 +26,7 @@ export default async ctx => {
     }
 
     // Update data in postgis_db
-    const res = await pg('res2_4m')
+    const res = await pg('spatial_info')
         .where('gid', gid)
         .update(newData)
         .timeout(CONF.timeout);
