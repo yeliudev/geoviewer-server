@@ -11,18 +11,13 @@ import CONF from './config';
 const app = new Koa({ proxy: true });
 app.keys = ['geoviewer secret keys']
 
-// Init Session
-const session = Session({
-    maxAge: CONF.validity
-}, app);
-
 // Bind middlewares
 app
     .use(middlewares.logger)
     .use(middlewares.headerSetter)
     .use(middlewares.bodyParser)
-    .use(session)
     .use(middlewares.validator)
+    .use(Session(CONF.session, app))
     .use(router.routes())
     .use(router.allowedMethods());
 

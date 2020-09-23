@@ -5,10 +5,10 @@ import CONF from '../config';
 
 export default async ctx => {
     // Get request data
-    const gid = ctx.request.body.gid;
+    const gid = ctx.parsed.gid;
 
     // Delete data from postgis_db
-    const res = await pg('spatial_info')
+    const res = await pg('city')
         .where('gid', gid)
         .del()
         .timeout(CONF.timeout);
@@ -16,11 +16,11 @@ export default async ctx => {
     // Return result
     ctx.body = res > 0 ?
         ({
-            success: true,
+            succeed: true,
             count: res
         }) :
         ({
-            success: false,
-            errMsg: `Error: Object with Gid = '${gid}' not found.`
+            succeed: false,
+            errMsg: `Object with Gid = '${gid}' not found.`
         });
 };

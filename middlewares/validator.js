@@ -10,18 +10,16 @@ const schemas = {
 
     '/logout': Joi.object(),
 
-    '/getDataset': Joi.object({
+    '/dataset': Joi.object({
         id: Joi.string().trim().max(20).required()
     }),
 
     '/search': Joi.object({
         keyword: Joi.string().trim().max(100).required(),
-        options: Joi.object().keys({
-            gid: Joi.boolean(),
-            name: Joi.boolean(),
-            pinyin: Joi.boolean(),
-            introduction: Joi.boolean()
-        }).required()
+        gid: Joi.boolean().required(),
+        name: Joi.boolean().required(),
+        pinyin: Joi.boolean().required(),
+        introduction: Joi.boolean().required()
     }),
 
     '/insert': Joi.object({
@@ -69,15 +67,20 @@ export default async (ctx, next) => {
     }
 
     // Validate parameters
-    const result = Joi.validate(ctx.method === 'GET' ? ctx.query : ctx.request.body, schemas[ctx.path]);
-    if (result.error) {
+    const params = ctx.method === 'GET' ? ctx.query : ctx.request.body
+    const { value, error } = schemas[ctx.path].validate(params);
+
+    if (error) {
         // Response error
         ctx.body = {
-            success: false,
-            errMsg: `${result.error.name}: ${result.error.details[0].message}.`
+            succeed: false,
+            errMsg: `${error.details[0].message}.`
         };
         return;
     }
+
+    // Save parsed value
+    ctx.parsed = value
 
     // Call next middleware
     await next();

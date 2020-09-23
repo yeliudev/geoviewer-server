@@ -7,12 +7,17 @@ export default {
     // Server listening IP
     ip: '0.0.0.0',
 
-    // Cookie expiry time (ms)
-    validity: 604800000,
+    // Session options
+    session: {
+        maxAge: 86400000,
+        sameSite: 'none',
+        secure: true,
+        renew: true
+    },
 
     // PostgreSQL
     pg_connection: {
-        host: 'localhost',
+        host: '127.0.0.1',
         port: '5432',
         user: '',
         password: '',

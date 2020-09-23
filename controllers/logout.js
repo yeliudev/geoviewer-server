@@ -2,14 +2,14 @@
 
 export default async ctx => {
     // Get username
-    const username = ctx.session.user;
+    const username = String(ctx.session.username);
 
     // Delete session
     ctx.session = null;
 
     // Return success result
     ctx.body = {
-        success: true,
+        succeed: true,
         user: username
     };
 };

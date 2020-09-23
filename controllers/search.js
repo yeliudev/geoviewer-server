@@ -6,16 +6,15 @@ import CONF from '../config';
 
 export default async ctx => {
     // Get request data
-    var { keyword, options } = ctx.query;
-    options = JSON.parse(options);
+    var { keyword, gid, name, pinyin, introduction } = ctx.parsed;
 
     // Select data from postgis_db
-    const res = await pg.select('gid', 'name', 'pinyin', 'introduction', 'image', st.asGeoJSON('geom').as('geometry'))
-        .from('spatial_info')
-        .where('gid', options.gid ? parseGid(keyword) : 0)
-        .orWhere('name', 'like', options.name ? `%${keyword}%` : '')
-        .orWhere('pinyin', 'like', options.pinyin ? `%${keyword}%` : '')
-        .orWhere('introduction', 'like', options.introduction ? `%${keyword}%` : 'none')
+    const res = await pg.select('gid', 'name', 'pinyin', 'introduction', 'image', st.asGeoJSON('geometry'))
+        .from('city')
+        .where('gid', gid ? parseGid(keyword) : 0)
+        .orWhere('name', 'like', name ? `%${keyword}%` : 'null')
+        .orWhere('pinyin', 'like', pinyin ? `%${keyword}%` : 'null')
+        .orWhere('introduction', 'like', introduction ? `%${keyword}%` : 'null')
         .orderBy('gid')
         .timeout(CONF.timeout);
 
@@ -28,11 +27,11 @@ export default async ctx => {
     // Return result
     ctx.body = res.length > 0 ?
         ({
-            success: true,
+            succeed: true,
             data: res
         }) :
         ({
-            success: false,
-            errMsg: `Error: Object with keyword = '${keyword}' not found.`
+            succeed: false,
+            errMsg: `Object with keyword '${keyword}' not found.`
         });
 };

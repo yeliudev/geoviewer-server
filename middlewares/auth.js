@@ -2,11 +2,11 @@
 
 export default async (ctx, next) => {
     // Check authorization
-    if (!ctx.session.user) {
+    if (!ctx.session.username) {
         ctx.body = {
-            success: false,
+            succeed: false,
             authError: true,
-            errMsg: `Error: Please login first.`
+            errMsg: `Please login first.`
         };
         return;
     }

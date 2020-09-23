@@ -7,7 +7,7 @@ const parseGid = (keyword) => {
 
 const parseGeoJSON = geom => {
     if (Array.isArray(geom)) {
-        // Feature collection
+        // Features collection
         geom.map(item => {
             item.type = 'Feature';
             item.properties = {};
