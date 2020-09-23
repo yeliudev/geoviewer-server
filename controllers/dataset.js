@@ -18,5 +18,8 @@ export default async ctx => {
     res = parseGeoJSON(res);
 
     // Return result
-    ctx.body = res;
+    ctx.body = {
+        succeed: true,
+        geometry: res
+    };
 };

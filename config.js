@@ -1,11 +1,14 @@
 /* Written by Ye Liu */
 
 export default {
-    // Server listening port
+    // Listening port
     port: '5757',
 
-    // Server listening IP
-    ip: '0.0.0.0',
+    // SSL certification
+    ssl: {
+        crt: '',
+        key: ''
+    },
 
     // Session options
     session: {

@@ -1,7 +1,7 @@
 /* Written by Ye Liu */
 
 import { pg } from '../utils/postgresql.utils';
-import { checkEmptyObject } from '../utils/validation.utils';
+import { isEmptyObject } from '../utils/data.utils';
 import CONF from '../config';
 
 export default async ctx => {
@@ -17,7 +17,7 @@ export default async ctx => {
     });
 
     // Return if nothing to update
-    if (checkEmptyObject(newData)) {
+    if (isEmptyObject(newData)) {
         ctx.body = {
             succeed: false,
             errMsg: `Nothing to update.`
