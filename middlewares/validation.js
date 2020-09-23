@@ -25,7 +25,7 @@ const schemas = {
     '/insert': Joi.object({
         name: Joi.string().trim().max(50).required(),
         pinyin: Joi.string().trim().max(100).required(),
-        introduction: Joi.string().trim().max(500).required(),
+        introduction: Joi.string().trim().max(500).allow('').required(),
         geometry: Joi.object().keys({
             id: Joi.string().alphanum().length(32),
             type: Joi.string().min(7).max(17).required(),
@@ -42,7 +42,7 @@ const schemas = {
         gid: Joi.number().integer().required(),
         name: Joi.string().trim().max(50),
         pinyin: Joi.string().trim().max(100),
-        introduction: Joi.string().trim().max(500),
+        introduction: Joi.string().trim().max(500).allow(''),
         geometry: Joi.object().keys({
             id: Joi.string().alphanum().length(32),
             type: Joi.string().min(7).max(17).required(),

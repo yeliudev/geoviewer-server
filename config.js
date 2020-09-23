@@ -4,17 +4,10 @@ export default {
     // Listening port
     port: '5757',
 
-    // SSL certification
-    ssl: {
-        crt: '',
-        key: ''
-    },
-
     // Session options
     session: {
         maxAge: 86400000,
         sameSite: 'none',
-        secure: true,
         renew: true
     },
 
