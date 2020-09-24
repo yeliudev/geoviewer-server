@@ -6,7 +6,7 @@ import CONF from '../config';
 
 export default async ctx => {
     // Get request data
-    var { keyword, gid, name, pinyin, introduction } = ctx.parsed;
+    const { keyword, gid, name, pinyin, introduction } = ctx.parsed;
 
     // Select data from postgis_db
     const res = await pg.select('gid', 'name', 'pinyin', 'introduction', 'image', st.asGeoJSON('geometry'))

@@ -5,7 +5,7 @@ import CONF from '../config';
 
 export default async ctx => {
     // Get request data
-    var { name, pinyin, introduction, image, geometry } = ctx.parsed;
+    const { name, pinyin, introduction, image, geometry } = ctx.parsed;
 
     // Set new Gid
     const currentGid = await pg('city').max('gid').timeout(CONF.timeout);

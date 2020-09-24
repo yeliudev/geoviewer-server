@@ -16,9 +16,9 @@ export default async (ctx, next) => {
 
     // Force to use secure cookie
     if (ctx.response.headers['set-cookie']) {
-        var header = [];
+        const header = [];
         ctx.response.headers['set-cookie'].map(item => {
-            header.push(item + ';secure');
+            header.push(item + '; secure');
         })
         ctx.set('Set-Cookie', header);
     }

@@ -8,7 +8,7 @@ export default async ctx => {
     // Get request data
     const gid = ctx.parsed.gid;
 
-    var newData = {};
+    const newData = {};
     Object.keys(ctx.parsed).map(key => {
         if (key !== 'gid') {
             newData[key] = ctx.parsed[key];
