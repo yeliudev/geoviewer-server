@@ -1,6 +1,6 @@
 /* Written by Ye Liu */
 
-import Joi from '@hapi/joi';
+import Joi from 'joi';
 
 const schemas = {
     '/login': Joi.object({
