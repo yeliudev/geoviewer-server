@@ -1,5 +1,12 @@
 /* Written by Ye Liu */
 
+const isEmptyObject = (obj) => {
+    for (var _ in obj) {
+        return false;
+    }
+    return true;
+}
+
 const parseGid = (keyword) => {
     const gid = parseInt(keyword);
     return isNaN(gid) ? 0 : gid;
@@ -7,7 +14,7 @@ const parseGid = (keyword) => {
 
 const parseGeoJSON = geom => {
     if (Array.isArray(geom)) {
-        // Feature collection
+        // Features collection
         geom.map(item => {
             item.type = 'Feature';
             item.properties = {};
@@ -28,4 +35,4 @@ const parseGeoJSON = geom => {
     }
 }
 
-export { parseGid, parseGeoJSON };
+export { isEmptyObject, parseGid, parseGeoJSON };

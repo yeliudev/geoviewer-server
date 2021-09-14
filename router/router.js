@@ -6,9 +6,7 @@ import controllers from '../controllers';
 import middlewares from '../middlewares';
 
 // Init koa-router
-const router = new Router({
-    prefix: '/api'
-});
+const router = new Router();
 
 // API list
 router
@@ -17,7 +15,7 @@ router
     .post('/insert', middlewares.auth, controllers.insert)
     .post('/update', middlewares.auth, controllers.update)
     .post('/delete', middlewares.auth, controllers.delete)
-    .get('/getDataset', controllers.getDataset)
+    .get('/dataset', controllers.dataset)
     .get('/search', controllers.search);
 
 export default router;

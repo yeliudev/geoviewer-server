@@ -8,23 +8,18 @@ import router from './router/router';
 import CONF from './config';
 
 // Init Koa app
-const app = new Koa();
+const app = new Koa({ proxy: true });
 app.keys = ['geoviewer secret keys']
-
-// Init Session
-const session = Session({
-    maxAge: CONF.validity
-}, app);
 
 // Bind middlewares
 app
     .use(middlewares.logger)
-    .use(middlewares.headerSetter)
-    .use(middlewares.bodyParser)
-    .use(session)
-    .use(middlewares.validator)
+    .use(middlewares.header)
+    .use(middlewares.body)
+    .use(middlewares.validation)
+    .use(Session(CONF.session, app))
     .use(router.routes())
     .use(router.allowedMethods());
 
-// Start web service
+// Start http service
 app.listen(CONF.port, CONF.ip, () => console.log(`Listening on port ${CONF.port}...`));

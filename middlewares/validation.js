@@ -1,33 +1,31 @@
 /* Written by Ye Liu */
 
-import Joi from '@hapi/joi';
+import Joi from 'joi';
 
 const schemas = {
-    '/api/login': Joi.object({
+    '/login': Joi.object({
         username: Joi.string().trim().max(20).required(),
         password: Joi.string().alphanum().length(32).required()
     }),
 
-    '/api/logout': Joi.object(),
+    '/logout': Joi.object(),
 
-    '/api/getDataset': Joi.object({
+    '/dataset': Joi.object({
         id: Joi.string().trim().max(20).required()
     }),
 
-    '/api/search': Joi.object({
+    '/search': Joi.object({
         keyword: Joi.string().trim().max(100).required(),
-        options: Joi.object().keys({
-            gid: Joi.boolean(),
-            name: Joi.boolean(),
-            pinyin: Joi.boolean(),
-            introduction: Joi.boolean()
-        }).required()
+        gid: Joi.boolean().required(),
+        name: Joi.boolean().required(),
+        pinyin: Joi.boolean().required(),
+        introduction: Joi.boolean().required()
     }),
 
-    '/api/insert': Joi.object({
+    '/insert': Joi.object({
         name: Joi.string().trim().max(50).required(),
         pinyin: Joi.string().trim().max(100).required(),
-        introduction: Joi.string().trim().max(500).required(),
+        introduction: Joi.string().trim().max(500).allow('').required(),
         geometry: Joi.object().keys({
             id: Joi.string().alphanum().length(32),
             type: Joi.string().min(7).max(17).required(),
@@ -40,11 +38,11 @@ const schemas = {
         })
     }),
 
-    '/api/update': Joi.object({
+    '/update': Joi.object({
         gid: Joi.number().integer().required(),
         name: Joi.string().trim().max(50),
         pinyin: Joi.string().trim().max(100),
-        introduction: Joi.string().trim().max(500),
+        introduction: Joi.string().trim().max(500).allow(''),
         geometry: Joi.object().keys({
             id: Joi.string().alphanum().length(32),
             type: Joi.string().min(7).max(17).required(),
@@ -57,7 +55,7 @@ const schemas = {
         })
     }),
 
-    '/api/delete': Joi.object({
+    '/delete': Joi.object({
         gid: Joi.number().integer().required()
     })
 };
@@ -69,15 +67,20 @@ export default async (ctx, next) => {
     }
 
     // Validate parameters
-    const result = Joi.validate(ctx.method === 'GET' ? ctx.query : ctx.request.body, schemas[ctx.path]);
-    if (result.error) {
+    const params = ctx.method === 'GET' ? ctx.query : ctx.request.body
+    const { value, error } = schemas[ctx.path].validate(params);
+
+    if (error) {
         // Response error
         ctx.body = {
-            success: false,
-            errMsg: `${result.error.name}: ${result.error.details[0].message}.`
+            succeed: false,
+            errMsg: `${error.details[0].message}.`
         };
         return;
     }
+
+    // Save parsed value
+    ctx.parsed = value
 
     // Call next middleware
     await next();

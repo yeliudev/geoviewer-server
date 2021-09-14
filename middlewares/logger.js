@@ -5,7 +5,7 @@ import dateFormat from 'dateformat';
 export default async (ctx, next) => {
     try {
         // Save request time
-        const qt = dateFormat(new Date(), 'yyyy-mm-dd hh:MM:ss');
+        const qt = dateFormat(new Date(), 'yyyy-mm-dd HH:MM:ss');
         const start = Date.now();
 
         // Call next middleware

@@ -1,35 +1,26 @@
 {
   "name": "geoviewer-server",
   "version": "1.0.0",
-  "description": "Back-end code for GeoViewer (https://yeliu.me/geoviewer)",
-  "main": "index.js",
+  "homepage": "https://github.com/yeliudev/geoviewer-server",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/goolhanrry/geoviewer-server.git"
-  },
-  "author": "Ye Liu",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/goolhanrry/geoviewer-server/issues"
-  },
-  "homepage": "https://github.com/goolhanrry/geoviewer-server#readme",
   "dependencies": {
-    "@hapi/joi": "^16.1.4",
     "babel-core": "^6.26.3",
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "babel-register": "^6.26.0",
-    "dateformat": "^3.0.3",
-    "knex": "^0.19.4",
-    "knex-postgis": "^0.8.1",
-    "koa": "^2.8.1",
-    "koa-bodyparser": "^4.2.1",
-    "koa-router": "^7.4.0",
-    "koa-session": "^5.12.3",
-    "md5": "^2.2.1",
-    "pg": "^7.12.1"
+    "dateformat": "^4.0.0",
+    "joi": "^17.3.0",
+    "knex": "^0.21.12",
+    "knex-postgis": "^0.12.0",
+    "koa": "^2.13.0",
+    "koa-bodyparser": "^4.3.0",
+    "koa-router": "^10.0.0",
+    "koa-session": "^6.1.0",
+    "lodash": "^4.17.21",
+    "md5": "^2.3.0",
+    "pg": "^8.5.1"
   }
 }

@@ -7,15 +7,15 @@ import CONF from '../config';
 
 export default async ctx => {
     // Get request data
-    const { username, password } = ctx.request.body;
+    const { username, password } = ctx.parsed;
 
     // Select salt from postgis_db
     const salt = await pg.select('salt').from('user').where('username', username).timeout(CONF.timeout);
 
     if (!salt.length) {
         ctx.body = {
-            success: false,
-            errMsg: `Error: User '${username}' not found.`
+            succeed: false,
+            errMsg: `User '${username}' not found.`
         };
         return;
     }
@@ -29,18 +29,18 @@ export default async ctx => {
 
     if (res.length > 0) {
         // Create session
-        ctx.session.user = username;
+        ctx.session.username = username;
 
         // Return success result
         ctx.body = {
-            success: true,
+            succeed: true,
             user: username
         };
     } else {
         // Return failed result
         ctx.body = {
-            success: false,
-            errMsg: `Error: Wrong username or password.`
+            succeed: false,
+            errMsg: `Wrong username or password.`
         };
     }
 };

@@ -1,32 +1,32 @@
 /* Written by Ye Liu */
 
 import { pg } from '../utils/postgresql.utils';
-import { checkEmptyObject } from '../utils/method.utils';
+import { isEmptyObject } from '../utils/data.utils';
 import CONF from '../config';
 
 export default async ctx => {
     // Get request data
-    const gid = ctx.request.body.gid;
+    const gid = ctx.parsed.gid;
 
-    var newData = {};
-    Object.keys(ctx.request.body).map(key => {
+    const newData = {};
+    Object.keys(ctx.parsed).map(key => {
         if (key !== 'gid') {
-            newData[key] = ctx.request.body[key];
+            newData[key] = ctx.parsed[key];
         }
         return true;
     });
 
     // Return if nothing to update
-    if (checkEmptyObject(newData)) {
+    if (isEmptyObject(newData)) {
         ctx.body = {
-            success: false,
+            succeed: false,
             errMsg: `Nothing to update.`
         };
         return;
     }
 
     // Update data in postgis_db
-    const res = await pg('res2_4m')
+    const res = await pg('city')
         .where('gid', gid)
         .update(newData)
         .timeout(CONF.timeout);
@@ -34,11 +34,11 @@ export default async ctx => {
     // Return result
     ctx.body = res > 0 ?
         ({
-            success: true,
+            succeed: true,
             count: res
         }) :
         ({
-            success: false,
-            errMsg: `Error: Object with Gid = '${gid}' not found.`
+            succeed: false,
+            errMsg: `Object with Gid = '${gid}' not found.`
         });
 };
