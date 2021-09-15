@@ -15,9 +15,9 @@ export default {
     pg_connection: {
         host: '127.0.0.1',
         port: '5432',
-        user: '',
-        password: '',
-        database: ''
+        user: 'geoviewer',
+        password: 'geoviewer',
+        database: 'geoviewer'
     },
 
     // Query waiting timeout
