@@ -2,13 +2,13 @@
 
 DROP TABLE IF EXISTS "public"."capital";
 CREATE TABLE "public"."capital" (
-  "gid" int4 NOT NULL DEFAULT nextval('cities_gid_seq'::regclass),
+  "gid" int4 NOT NULL,
   "name" varchar(30) COLLATE "pg_catalog"."default" NOT NULL,
   "pinyin" varchar(50) COLLATE "pg_catalog"."default" NOT NULL,
   "geometry" "public"."geometry" NOT NULL
 )
 ;
-ALTER TABLE "public"."capital" OWNER TO "root";
+ALTER TABLE "public"."capital" OWNER TO "geoviewer";
 
 BEGIN;
 INSERT INTO "public"."capital" VALUES (1, '北京', 'Beijing', '01010000000000006061185D400000000039F64340');
@@ -57,7 +57,7 @@ CREATE TABLE "public"."city" (
   "geometry" "public"."geometry" NOT NULL
 )
 ;
-ALTER TABLE "public"."city" OWNER TO "root";
+ALTER TABLE "public"."city" OWNER TO "geoviewer";
 
 BEGIN;
 INSERT INTO "public"."city" VALUES (1, '景德镇', 'Jingdezhen', NULL, NULL, '0101000000000000608C475D4000000080F6313D40');
@@ -395,13 +395,13 @@ COMMIT;
 
 DROP TABLE IF EXISTS "public"."county";
 CREATE TABLE "public"."county" (
-  "gid" int4 NOT NULL DEFAULT nextval('cities_gid_seq1'::regclass),
+  "gid" int4 NOT NULL,
   "name" varchar(32) COLLATE "pg_catalog"."default" NOT NULL,
   "pinyin" varchar(50) COLLATE "pg_catalog"."default" NOT NULL,
   "geometry" "public"."geometry" NOT NULL
 )
 ;
-ALTER TABLE "public"."county" OWNER TO "root";
+ALTER TABLE "public"."county" OWNER TO "geoviewer";
 
 BEGIN;
 INSERT INTO "public"."county" VALUES (1, '漠河县', 'Mohe Xian', '0101000000802BD9B111A25E404B0169FF037C4A40');
@@ -2502,7 +2502,7 @@ CREATE TABLE "public"."user" (
   "salt" varchar(10) COLLATE "pg_catalog"."default" NOT NULL
 )
 ;
-ALTER TABLE "public"."user" OWNER TO "root";
+ALTER TABLE "public"."user" OWNER TO "geoviewer";
 
 BEGIN;
 INSERT INTO "public"."user" VALUES ('geoviewer@admin', '505e08d83b3403b67a111e66e62a89d8', 'chocolate');
