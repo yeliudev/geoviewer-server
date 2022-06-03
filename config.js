@@ -13,7 +13,7 @@ export default {
 
     // PostgreSQL
     pg_connection: {
-        host: '127.0.0.1',
+        host: 'postgres',
         port: '5432',
         user: 'geoviewer',
         password: 'geoviewer',
