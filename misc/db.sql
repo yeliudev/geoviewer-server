@@ -1,7 +1,5 @@
 /* Written by Ye Liu */
 
-CREATE EXTENSION postgis;
-
 DROP TABLE IF EXISTS "public"."capital";
 CREATE TABLE "public"."capital" (
   "gid" int4 NOT NULL,

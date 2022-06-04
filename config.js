@@ -2,7 +2,7 @@
 
 export default {
     // Listening port
-    port: '5757',
+    port: '5050',
 
     // Session options
     session: {
